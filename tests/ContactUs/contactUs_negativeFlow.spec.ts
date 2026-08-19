@@ -45,15 +45,10 @@ test("Verify CONTACT US page, negtive flow", async ({ page, context }) => {
     await contactPage.locator(".eb.eb-home").click();
     await expect(contactPage).toHaveURL('https://webdriveruniversity.com/index.html');
 
+    await contactPage.close();
+    await page.close();
+
 })
 
-//Error: Invalid email address
-
-// await contactPage.getByPlaceholder("First Name").fill("John");
-// await contactPage.getByPlaceholder("Last Name").fill("Doe");
-// await contactPage.getByPlaceholder("Email Address").fill("test@gmail.com");
-// await contactPage.getByPlaceholder("Comments").fill("This is a test comment.");
-// await contactPage.getByRole("button", { name: "SUBMIT" }).click();
-// await expect(contactPage.locator('text="Thank You for your Message!"')).toBeVisible();
 
 
