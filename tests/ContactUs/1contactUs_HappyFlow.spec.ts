@@ -33,7 +33,10 @@ test("Verify CONTACT US page", async ({ page, context }) => {
     await contactPage.getByPlaceholder("Email Address").fill("test@gmail.com");
     await contactPage.getByPlaceholder("Comments").fill("This is a test comment.");
     await contactPage.getByRole("button", { name: "SUBMIT" }).click();
-    await expect(contactPage.locator('text="Thank You for your Message!"')).toBeVisible(); 
-    //test git upload
+    await expect(contactPage.locator('text="Thank You for your Message!"')).toBeVisible();
+    await expect(contactPage.locator('.home-btn')).toBeVisible();
+    console.log("Button text is: ", await contactPage.locator('.home-btn').textContent());
+    await contactPage.locator('.home-btn').click();
+    await expect(contactPage).toHaveURL('https://webdriveruniversity.com/index.html')
 
 })

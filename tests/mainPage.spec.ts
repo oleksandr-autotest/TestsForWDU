@@ -45,7 +45,7 @@ test('Verify main page', async ({ page }) => {
 
     //check seventh title
     await expect(page.locator('.sales-trust')).toBeVisible();
-    await expect(page.locator('.sales-trust')).toHaveText('👨‍🏫 99,000+ students • 12,000+ reviews • Learn from a Senior SDET');
+    await expect(page.locator('.sales-trust')).toHaveText('👨‍🏫 102,000+ students • 12,500+ reviews • Learn from a Senior SDET');
     console.log("7 title text is: " + await page.locator('.sales-trust').textContent());
 
     //sales block start 
