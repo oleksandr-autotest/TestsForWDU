@@ -1,14 +1,10 @@
 import { test, expect } from "@playwright/test"
+import { openNewPage } from "../../helpers/newPageHelper.ts";
 
 
 test("Verify CONTACT US page, negtive flow", async ({ page, context }) => {
 
-    await page.goto('/index.html');
-    const pagePromise = context.waitForEvent('page');
-    await page.locator('#contact-us').click();
-    const contactPage = await pagePromise;
-    await contactPage.waitForLoadState('networkidle');
-
+    const contactPage = await openNewPage(page, context, page.locator('#contact-us'));
     const pageFields = [
         { selector: contactPage.getByPlaceholder("First Name"), value: "John" },
         { selector: contactPage.getByPlaceholder("Last Name"), value: "Doe" },
@@ -32,7 +28,7 @@ test("Verify CONTACT US page, negtive flow", async ({ page, context }) => {
             await expect(contactPage.locator('text="Error: all fields are required"')).toBeVisible();
         };
         await contactPage.locator(".eb.eb-retry").click();
-        console.log("Iteration #" + skipIndex + " is completed");
+        // console.log("Iteration #" + skipIndex + " is completed");
     }
 
 
@@ -47,6 +43,8 @@ test("Verify CONTACT US page, negtive flow", async ({ page, context }) => {
 
     await contactPage.close();
     await page.close();
+
+    console.log(`The \"Verify CONTACT US page, negtive flow\" test is successful`);
 
 })
 
