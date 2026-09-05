@@ -9,6 +9,8 @@ test("Verify ACCORDION & TEXT EFFECTS page", async ({ page, context }) => {
         page.getByRole('link', { name: 'ACCORDION & TEXT EFFECTS' })
     );
 
+    // const startDate = Date.now();
+
     await expect(accordionPage.locator('#text-appear-box')).toHaveText(`LOADING.. PLEASE WAIT..`);
 
 
@@ -26,34 +28,29 @@ test("Verify ACCORDION & TEXT EFFECTS page", async ({ page, context }) => {
         await accordionButtonLocator.click();
 
         await expect(accordionArray[i].accordionSelectorP).toHaveText(accordionArray[i].accordionContent);
+        // await expectNotOverflow(accordionArray[i].accordionSelectorP, accordionPage);
 
         await expect(accordionButtonLocator).toHaveClass(/accordion active/);
         await accordionButtonLocator.click();
         await expect(accordionButtonLocator).toHaveClass(/accordion/);
-
-        console.log("Iteration #" + i + " is completed");
+        // console.log("Iteration #" + i + " is completed");
     };
 
 
-    // await expect(accordionPage.locator('#text-appear-box')).toHaveText(`LOADING COMPLETE`);
-
-    // const locator = page.locator('#text-appear-box');
-    // const elementHandle = await locator.elementHandle();
-
-    // await page.waitForFunction(
-    //     el => el.textContent === 'LOADING COMPLETE',
-    //     elementHandle
-    // );
-
-
-
-
-
-
-
-
+    // check last element
+    await expect(accordionPage.locator('#click-accordion')).toHaveText(`Keep Clicking! - Text will Appear After 5 Seconds!`);
+    const clickAccordion = accordionPage.locator('#click-accordion');
+    await clickAccordion.click();
+    await expect(await accordionPage.locator('#timeout')).toHaveText(``);
+    await clickAccordion.click();
+    await expect(accordionPage.locator('#text-appear-box')).toHaveText(`LOADING COMPLETE.`, { timeout: 20000 });
+    // const endDate = Date.now();
+    // const elapsed = endDate - startDate;
+    // console.log(`Time passed: ${elapsed} ms`);
+    await expect(clickAccordion).toHaveClass(/accordion/);
+    await clickAccordion.click();
+    await expect(clickAccordion).toHaveClass(/accordion active/);
+    await expect(await accordionPage.locator('#timeout')).toHaveText(`This text has appeared after 5 seconds!`);
 
     console.log(`The \"Verify ACCORDION & TEXT EFFECTS page\" test is successful`);
-
-
 })
