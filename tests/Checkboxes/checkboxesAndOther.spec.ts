@@ -20,52 +20,22 @@ test("Dropdown Menu(s), Checkboxe(s) & Radio Button(s)", async ({ page, context 
     await expect(titles.nth(2)).toHaveText(`Radio Button(s)`);
     await expect(titles.nth(3)).toHaveText(`Selected & Disabled`);
 
-    await checkboxesPage.getByLabel('Option 3').click();
+    await checkboxesPage.getByLabel('Option 3').click(); // reset all checkboxes to 0
 
-    // const checkboxes = checkboxesPage.locator('input[type="checkbox"]');
-    // const count = await checkboxes.count();
-
-    // for (let mask = 0; mask < (1 << count); mask++) {
-    //     console.log(`Комбінація: ${mask.toString(2).padStart(count, '0')}`);
-
-    //     // Встановлюємо стан для кожного чекбокса
-    //     for (let i = 0; i < count; i++) {
-    //         const cb = checkboxes.nth(i);
-    //         const shouldCheck = (mask >> i) & 1;
-
-    //         if (shouldCheck) {
-    //             await cb.check();
-    //         } else {
-    //             await cb.uncheck();
-    //         }
-    //     }
-
-    //     for (let i = 0; i < count; i++) {
-    //         const cb = checkboxes.nth(i);
-    //         const expected = (mask >> i) & 1;
-    //         await expect(cb).toBeChecked({ checked: !!expected });
-    //     }
-    // }
-
-
-
-
-
-
-
+ 
 
 
     console.log(`The \"Dropdown Menu(s), Checkboxe(s) & Radio Button(s)\" test is successful`);
 })
 
-
+// verify checkboxes
 
 const combinations = Array.from({ length: 1 << 4 }, (_, mask) =>
   mask.toString(2).padStart(4, '0')
 );
 
 for (const combo of combinations) {
-  test(`Checkbox combo ${combo}`, async ({ page, context }) => {
+  test(`Test checkboxes combo ${combo}`, async ({ page, context }) => {
     const checkboxesPage = await openNewPage(
       page,
       context,
@@ -89,3 +59,18 @@ for (const combo of combinations) {
     }
   });
 }
+
+test("Test radio buttons", async ({ page, context }) => {
+
+    const checkboxesPage = await openNewPage(
+        page,
+        context,
+        page.getByRole('link', { name: 'DROPDOWNS, CHECKBOXES & RADIOS' })
+    );
+
+
+    
+
+
+
+})
