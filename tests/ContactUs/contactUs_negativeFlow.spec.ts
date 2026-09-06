@@ -44,9 +44,11 @@ test("Verify CONTACT US page, negtive flow", async ({ page, context }) => {
     await contactPage.close();
     await page.close();
 
-    console.log(`The \"Verify CONTACT US page, negtive flow\" test is successful`);
+    
 
 })
 
-
+test.afterAll(() => {
+    console.log(`The \"Verify CONTACT US page, negtive flow\" test is successful`);
+});
 

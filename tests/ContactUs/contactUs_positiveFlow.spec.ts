@@ -26,6 +26,10 @@ test("Verify CONTACT US page", async ({ page, context }) => {
     await contactPage.locator('.home-btn').click();
     await expect(contactPage).toHaveURL('https://webdriveruniversity.com/index.html')
 
-    console.log(`The \"Verify CONTACT US page\" test is successful`);
+    
 
 })
+
+test.afterAll(() => {
+    console.log(`The \"Verify CONTACT US page\" test is successful`);
+});

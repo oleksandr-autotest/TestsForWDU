@@ -80,6 +80,10 @@ test('Verify main page', async ({ page }) => {
     // console.log("Footer link href is: " + await page.getByRole('link', { name: 'Automationteststore' }).getAttribute('href'));
 
 
-    console.log(`The \"Verify main page\" test is successful`);
     
+    
+});
+
+test.afterAll(() => {
+    console.log(`The \"Verify main page\" test is successful`);
 });

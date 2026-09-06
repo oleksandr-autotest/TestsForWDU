@@ -52,5 +52,9 @@ test("Verify ACCORDION & TEXT EFFECTS page", async ({ page, context }) => {
     await expect(clickAccordion).toHaveClass(/accordion active/);
     await expect(await accordionPage.locator('#timeout')).toHaveText(`This text has appeared after 5 seconds!`);
 
-    console.log(`The \"Verify ACCORDION & TEXT EFFECTS page\" test is successful`);
+    
 })
+
+test.afterAll(() => {
+    console.log(`The \"Verify ACCORDION & TEXT EFFECTS page\" test is successful`);
+});

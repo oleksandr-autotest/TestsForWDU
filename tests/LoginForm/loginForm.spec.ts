@@ -68,3 +68,7 @@ test("Login positive flow", async ({ page, context }) => {
 
 
 })
+
+test.afterAll(() => {
+    console.log(`The \"Login positive flow\" test is successful`);
+});
