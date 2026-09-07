@@ -71,6 +71,7 @@ test("Click and hold", async ({ page }) => {
     await page.mouse.down();
     await expect(clickAndHoldArea).toHaveText('Well done! keep holding that click now.....');
     await page.waitForTimeout(3000);
+    await expect(clickAndHoldArea).toHaveText('Well done! keep holding that click now.....');
     await page.mouse.up();
     await expect(clickAndHoldArea).toHaveText('Dont release me!!!');
 
